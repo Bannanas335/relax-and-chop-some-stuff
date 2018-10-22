@@ -41,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private Animator m_animator;
 
         // Use this for initialization
         private void Start()
@@ -55,6 +56,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_animator = GetComponent<Animator>();
+      
+
         }
 
 
@@ -81,6 +85,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if (Input.GetMouseButtonDown (0))
+            {
+                m_animator.SetTrigger("attack");
+            }
         }
 
 
